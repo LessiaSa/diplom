@@ -72,7 +72,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="?android:attr/selectableItemBackground"
-        android:contentDescription="@string/authorization"
+        android:contentDescription="Authorization"
         android:src="@drawable/ic_authorization"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

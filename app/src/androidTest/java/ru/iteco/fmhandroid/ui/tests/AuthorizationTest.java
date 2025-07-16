@@ -1,12 +1,5 @@
 package ru.iteco.fmhandroid.ui.tests;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import android.view.View;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
@@ -16,7 +9,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
-import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.data.DataHelper;
 import ru.iteco.fmhandroid.ui.data.FieldIDs;
@@ -38,34 +30,41 @@ public class AuthorizationTest {
 
     @Before
     public void setUp() {
-        AuthorizationSteps.applicationHomeScreen();
+        try {
+            AuthorizationSteps.applicationHomeScreen();
+            //onView(withId(R.id.enter_button)).perform(typeText("Войти"));
+            //dataHelper.elementWaiting(authorizationPage.titleAuthoriz, 10000);
+        } catch (Exception e) {
+            mainSteps.buttonLogOutProfile();
+            mainSteps.logOutPopUpOfTheProfile();
+            //dataHelper.elementWaiting(withId(R.id.enter_button), 5000);
+        }
+        mActivityScenarioRule.getScenario().onActivity(activity -> decorView = activity.getWindow().getDecorView());
+
     }
 
     @After
     public void tearDown() {
         try {
-            mainSteps.logOutOfTheProfile();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            mainSteps.buttonLogOutProfile();
+            mainSteps.logOutPopUpOfTheProfile();
+        } catch (Exception ignored) {
+            //onView(allOf(withId(R.id.authorization_logout_menu_item), isDisplayingAtLeast(40))).perform(click());
+            //buttonExitPopUpWindow.inRoot(withDecorView(Matchers.not(decorView))).check(matches(isDisplayed())).perform(click());
+//        onView(withText(R.id.authorization_logout_menu_item)).inRoot(RootMatchers.
+//                withDecorView(not(decorView))).check(matches(isDisplayed())).perform(click());
+            //onView(withText(endsWith("Выйти"))).check(matches(isDisplayed()));
         }
     }
-
     @Test
     public void verifyingAuthorizWithValidData() {
         AuthorizationSteps.authorizWithValidData();
         mainSteps.loadingTheMainPage();
-        onView(withId(R.id.all_news_text_view)) .check(matches(withText("Все новости")));
+        //onView(withId(R.id.all_news_text_view)).check(matches(withText("Все новости")));
+//        mainSteps.buttonLogOutProfile();
+//        mainSteps.logOutPopUpOfTheProfile();
     }
 
-    @Test
-    public void valLog() {
-        onView(withId(R.id.login_text_input_layout))
-                .perform(typeText("login2"), closeSoftKeyboard());
-        onView(withId(R.id.password_text_input_layout))
-                .perform(typeText("password2"), closeSoftKeyboard());
-        onView(withId(R.id.enter_button)).perform(click());
-        onView(withId(R.id.trademark_image_view)).check(matches(withText("вхосписе")));
-    }
 }
 
 

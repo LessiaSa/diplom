@@ -3,7 +3,6 @@ package ru.iteco.fmhandroid.ui.data;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
-
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,9 @@ import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.util.HumanReadables;
 import androidx.test.espresso.util.TreeIterables;
-
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -167,7 +164,7 @@ public class DataHelper {
         public static void elementWaiting(final Matcher<View> matcher, int millis) {
             onView(isRoot()).perform(waitForElement(matcher, millis));
         }
-    public static ViewAction waitForElement(final Matcher<View> matcher, final long millis) {
+        public static ViewAction waitForElement(final Matcher<View> matcher, final long millis) {
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {

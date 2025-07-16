@@ -4,7 +4,6 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import android.view.View;
 import androidx.test.espresso.ViewInteraction;
-
 import org.hamcrest.Matcher;
 import ru.iteco.fmhandroid.R;
 
@@ -12,7 +11,7 @@ public class FieldIDs {
     public static Matcher<View> homeScreen;
     public static ViewInteraction authorizLog;
     public static ViewInteraction authorizPass;
-    public static Matcher<View> authorizationButtonEnter;
+    public static ViewInteraction authorizationButtonEnter;
     public static Matcher<View> mainTitle;
     public static ViewInteraction gestureUpdate;
 
@@ -124,14 +123,14 @@ public class FieldIDs {
     public static ViewInteraction descriptionQuoteBlock;
 
     //Кнока "Выйти"
-    public static ViewInteraction buttonLogOut;
-    public static ViewInteraction buttonExitPopUpWindow;
+    public static Matcher<View> buttonLogOut;
+    public static Matcher<View> buttonExitPopUpWindow;
 
     public FieldIDs() {
         homeScreen = withId(R.id.splashscreen_image_view);
         authorizLog = onView(withId(R.id.login_text_input_layout));
         authorizPass = onView(withId(R.id.password_text_input_layout));
-        authorizationButtonEnter = withId(R.id.enter_button);
+        authorizationButtonEnter = onView(withId(R.id.enter_button));
         mainTitle = withId(R.id.trademark_image_view);
         gestureUpdate = onView(withId(R.id.main_swipe_refresh));
         newsButton = onView(withId(R.id.all_news_text_view));
@@ -184,8 +183,8 @@ public class FieldIDs {
         //Все сотрудники хосписа - это адвокаты пациента, его прав и потребностей. Поиск путей решения различных задач -
         // это и есть хосписный индивидуальный подход к паллиативной помощи.
         descriptionQuoteBlock = onView(withId(R.id.our_mission_item_description_text_view));
-        buttonLogOut = onView(withId(R.id.authorization_image_button));
-        buttonExitPopUpWindow = onView(withId(R.id.authorization_logout_menu_item));
+        buttonLogOut = withId(R.id.authorization_image_button);
+        buttonExitPopUpWindow = withId(R.id.authorization_logout_menu_item);
         blockNews = onView(withId(R.id.news_item_material_card_view));
         titleBlockNews = onView(withId(R.id.news_item_title_text_view));
         buttonExpandNews = onView(withId(R.id.view_news_item_image_view));
