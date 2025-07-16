@@ -20,6 +20,7 @@ public class AuthorizationSteps {
     static FieldIDs fieldIDs = new FieldIDs();
 
 
+
     public static void applicationHomeScreen() {
         Allure.step("Начальный экран приложения");
         onView(allOf(withId(R.id.splashscreen_image_view), isDisplayed()));
@@ -29,37 +30,37 @@ public class AuthorizationSteps {
 
     public static void authorizWithValidData() {
         Allure.step("Авторизация с валидными данными");
-        AuthorizationPage.loginField.perform(typeText(dataHelper.getValidUser().getLogin()));
-        AuthorizationPage.passwordField.perform(typeText(dataHelper.getValidUser().getPassword()), closeSoftKeyboard());
+       AuthorizationPage.loginField.matches(typeText(dataHelper.getValidUser().getLogin()));
+       AuthorizationPage.passwordField.perform(typeText(dataHelper.getValidUser().getPassword()), closeSoftKeyboard());
         fieldIDs.authorizationButtonEnter.perform(click());
     }
 
     public void authorizationInvalidLogin() {
         Allure.step("Авторизация с невалидным логином");
-        authorizLog.perform(click());
-        AuthorizationPage.loginField.perform(typeText(dataHelper.getInvalidUser().getInvalidLogin()));
+        authorizLog.matches(click());
+        AuthorizationPage.loginField.matches(typeText(dataHelper.getInvalidUser().getInvalidLogin()));
         authorizPass.perform(click());
         AuthorizationPage.passwordField.perform(typeText(dataHelper.getValidPassword()), closeSoftKeyboard());
     }
     public void authorizationInvalidPassword() {
         Allure.step("Авторизация с невалидным паролем");
-        authorizLog.perform(click());
-        AuthorizationPage.loginField.perform(typeText(dataHelper.getValidUser().getLogin()));
+        authorizLog.matches(click());
+        AuthorizationPage.loginField.matches(typeText(dataHelper.getValidUser().getLogin()));
         authorizPass.perform(click());
         AuthorizationPage.passwordField.perform(typeText(dataHelper.getInvalidPassword()), closeSoftKeyboard());
     }
 
     public void authorizationWithInvalidData() {
         Allure.step("Авторизация с невалидными и логином и паролем");
-        authorizLog.perform(click());
-        AuthorizationPage.loginField.perform(typeText(dataHelper.getInvalidUser().getInvalidLogin()));
+        authorizLog.matches(click());
+        AuthorizationPage.loginField.matches(typeText(dataHelper.getInvalidUser().getInvalidLogin()));
         authorizPass.perform(click());
         AuthorizationPage.passwordField.perform(typeText(dataHelper.getInvalidPassword()), closeSoftKeyboard());
     }
     public void authorizationClickingLogInButtonSeveralTimesWithInvalidData() {
         Allure.step("Попытка авторизации, несколько раз нажав кнопку 'Войти'");
-        authorizLog.perform(click());
-        AuthorizationPage.loginField.perform(typeText(dataHelper.getInvalidUser().getInvalidLogin()));
+        authorizLog.matches(click());
+        AuthorizationPage.loginField.matches(typeText(dataHelper.getInvalidUser().getInvalidLogin()));
         authorizPass.perform(click());
         AuthorizationPage.passwordField.perform(typeText(dataHelper.getInvalidPassword()), closeSoftKeyboard());
     }

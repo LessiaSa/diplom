@@ -1,5 +1,9 @@
 package ru.iteco.fmhandroid.ui.tests;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import android.view.View;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
@@ -9,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
+import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.data.DataHelper;
 import ru.iteco.fmhandroid.ui.data.FieldIDs;
@@ -60,7 +65,7 @@ public class AuthorizationTest {
     public void verifyingAuthorizWithValidData() {
         AuthorizationSteps.authorizWithValidData();
         mainSteps.loadingTheMainPage();
-        //onView(withId(R.id.all_news_text_view)).check(matches(withText("Все новости")));
+        onView(withId(R.id.all_news_text_view)).check(matches(withText("Все новости")));
 //        mainSteps.buttonLogOutProfile();
 //        mainSteps.logOutPopUpOfTheProfile();
     }

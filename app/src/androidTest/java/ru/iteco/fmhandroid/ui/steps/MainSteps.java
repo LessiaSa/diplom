@@ -10,10 +10,12 @@ import static ru.iteco.fmhandroid.ui.data.FieldIDs.buttonExitPopUpWindow;
 import static ru.iteco.fmhandroid.ui.data.FieldIDs.buttonLogOut;
 import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
+import ru.iteco.fmhandroid.ui.data.DataHelper;
 import ru.iteco.fmhandroid.ui.data.FieldIDs;
 
 public class MainSteps {
     FieldIDs fieldIDs = new FieldIDs();
+    static DataHelper dataHelper = new DataHelper();
 
 
     public void loadingTheMainPage() {
@@ -23,7 +25,7 @@ public class MainSteps {
 
     public void checkVisibilityOfTheNewsBlock() {
         Allure.step("Проверка видимости блока 'Новости'");
-        elementWaiting(fieldIDs.newsBlock, 5000);
+        dataHelper.elementWaiting(fieldIDs.newsBlock, 5000);
     }
     public void allNewsButtonOnTheAppsHomePage() {
         Allure.step("кнопка 'Все новости' на главной странице приложения");

@@ -9,7 +9,7 @@ import ru.iteco.fmhandroid.R;
 
 public class FieldIDs {
     public static Matcher<View> homeScreen;
-    public static ViewInteraction authorizLog;
+    public static Matcher<View> authorizLog;
     public static ViewInteraction authorizPass;
     public static ViewInteraction authorizationButtonEnter;
     public static Matcher<View> mainTitle;
@@ -128,7 +128,7 @@ public class FieldIDs {
 
     public FieldIDs() {
         homeScreen = withId(R.id.splashscreen_image_view);
-        authorizLog = onView(withId(R.id.login_text_input_layout));
+        authorizLog = withId(R.id.login_text_input_layout);
         authorizPass = onView(withId(R.id.password_text_input_layout));
         authorizationButtonEnter = onView(withId(R.id.enter_button));
         mainTitle = withId(R.id.trademark_image_view);

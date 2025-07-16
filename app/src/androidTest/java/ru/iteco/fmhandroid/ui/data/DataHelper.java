@@ -41,6 +41,7 @@ public class DataHelper {
 
 
     public String getValidLogin() {
+
         return validLogin;
     }
 
@@ -64,6 +65,7 @@ public class DataHelper {
     public User getInvalidUser() {
         return new User(getInvalidLogin(), getInvalidPassword());
     }
+
 
     public class User {
         private final String login;
@@ -161,8 +163,9 @@ public class DataHelper {
         }
 
         //Ждем элемент
-        public static void elementWaiting(final Matcher<View> matcher, int millis) {
+        public static Matcher<View> elementWaiting(final Matcher<View> matcher, int millis) {
             onView(isRoot()).perform(waitForElement(matcher, millis));
+            return matcher;
         }
         public static ViewAction waitForElement(final Matcher<View> matcher, final long millis) {
         return new ViewAction() {
